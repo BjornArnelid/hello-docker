@@ -1,0 +1,18 @@
+version: '2'
+services:
+  # this is our hello world image
+  web:
+    build: .
+    # Rely on standard http port
+    ports:
+     - "80:80"
+    # Needs thw docker service below
+    depends_on:
+      - mongodb
+    # Allow mongodb and falsk to communicate
+    links:
+      - mongodb
+  # This is the database
+  mongodb:
+    # Use a standard mongodb image, lets use version 4
+    image: "mongo:4"
